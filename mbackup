@@ -1,22 +1,15 @@
 #!/usr/bin/env bash
 
-source "./util.sh"
-
 header BACKUP
+
+source "./util.sh"
 
 mkdir ./data &>/dev/null
 
 cat <config | while read -r entry; do
 	fll "$(tput cols)" -
 
-	# Comment lines
-	if [[ "${entry:0:1}" == "#" ]]; then continue; fi
-
-	# Empty lines
-	if [[ -z $entry ]]; then continue; fi
-
-	if ! [[ -e $entry ]]; then
-		echo -e "$entry doesnt exists. \n skipping ..."
+	if [[ -n $(catches "$entry") ]]; then
 		continue
 	fi
 
@@ -26,7 +19,7 @@ cat <config | while read -r entry; do
 		entry="${entry}/."
 	fi
 
-	echo ">: $dest"
+	echo -e "src: ${entry}\ndst: ${dest}"
 
 	cp -afv "$entry" "$dest"
 done

@@ -7,11 +7,9 @@ source "./util.sh"
 cat <config | while read -r entry; do
 	fll "$(tput cols)" -
 
-	# Comments
-	if [[ "${entry:0:1}" == "#" ]]; then continue; fi
-
-	# Empty
-	if [[ -z $entry ]]; then continue; fi
+	if [[ -n $(catches "$entry") ]]; then
+		continue
+	fi
 
 	backup_entry="$(serialize "$entry")"
 
