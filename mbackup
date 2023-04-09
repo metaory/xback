@@ -6,7 +6,6 @@ cat <<EOF
   ################
 EOF
 
-echo "$PWD"
 fll() { printf "%0.s${2:- }" $(seq 1 "${1:-1}"); }
 
 mkdir ./data &>/dev/null
@@ -37,5 +36,3 @@ cat <config | while read -r entry; do
 		continue
 	fi
 done
-
-# mkdir -p "./data${entry%/*}"
