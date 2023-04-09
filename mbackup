@@ -6,20 +6,19 @@ cat <<EOF
   ################
 EOF
 
-fll() { printf "%0.s${2:- }" $(seq 1 "${1:-1}"); }
+source "./util.sh"
 
 mkdir ./data &>/dev/null
 
 cat <config | while read -r entry; do
-	fll "$(tput cols)" \-
+	fll "$(tput cols)" -
 
 	# Comments
 	if [[ "${entry:0:1}" == "#" ]]; then continue; fi
-
 	# Empty
 	if [[ -z $entry ]]; then continue; fi
 
-	dest="./data/${entry//\//__}"
+	dest=$(serialize "$entry")
 	echo ">: $dest"
 
 	# Files

@@ -6,24 +6,32 @@ cat <<EOF
   #################
 EOF
 
-for entry in ./data/*; do
-	echo -e "\n"
-	dest="${entry/#.\/data\//}"
-	dest="${dest//__/\/}"
+source "./util.sh"
 
-	echo ">: $dest"
+cat <config | while read -r entry; do
+	echo
+	# Comments
+	if [[ "${entry:0:1}" == "#" ]]; then continue; fi
+	# Empty
+	if [[ -z $entry ]]; then continue; fi
 
-	# Files
+	backup_entry="$(serialize "$entry")"
+
+	if ! [[ -e $backup_entry ]]; then
+		echo -e "$backup_entry doesnt exists. \n skipping ..."
+		continue
+	fi
+
+	echo -e "d: ${backup_entry}\n${entry}"
+
 	if [[ -f "$entry" ]]; then
-		echo "f: $entry"
-		# cp "$entry" "$dest" --interactive -v
+		cp -f "$backup_entry" "$entry"
 		continue
 	fi
 
 	# Directories
 	if [[ -d "$entry" ]]; then
-		echo "d: $entry"
-		# cp -r "$entry" "$dest" --interactive -v
+		cp -af "$backup_entry/." "$entry"
 		continue
 	fi
 done
