@@ -1,3 +1,8 @@
+if ! [[ -e "./config" ]]; then
+	echo "config not found!"
+	exit 1
+fi
+
 fll() {
 	printf "%0.s${2:- }" $(seq 1 "${1:-1}")
 }
