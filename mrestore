@@ -9,9 +9,11 @@ EOF
 source "./util.sh"
 
 cat <config | while read -r entry; do
-	echo
+	fll "$(tput cols)" -
+
 	# Comments
 	if [[ "${entry:0:1}" == "#" ]]; then continue; fi
+
 	# Empty
 	if [[ -z $entry ]]; then continue; fi
 
@@ -30,7 +32,5 @@ cat <config | while read -r entry; do
 		src="${src}/."
 	fi
 
-	cp -af "$src" "$entry"
-	continue
-	# fi
+	cp -afv "$src" "$entry"
 done

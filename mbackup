@@ -19,9 +19,18 @@ cat <config | while read -r entry; do
 	# Empty lines
 	if [[ -z $entry ]]; then continue; fi
 
+	if ! [[ -e $entry ]]; then
+		echo -e "$entry doesnt exists. \n skipping ..."
+		continue
+	fi
+
 	dest=$(serialize "$entry")
+
+	if [[ -d "$entry" ]]; then
+		entry="${entry}/."
+	fi
 
 	echo ">: $dest"
 
-	cp -rv "$entry" "$dest"
+	cp -afv "$entry" "$dest"
 done
