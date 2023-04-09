@@ -24,14 +24,13 @@ cat <config | while read -r entry; do
 
 	echo -e "d: ${backup_entry}\n${entry}"
 
-	if [[ -f "$entry" ]]; then
-		cp -f "$backup_entry" "$entry"
-		continue
+	src="$backup_entry"
+
+	if [[ -d "$entry" ]]; then
+		src="${src}/."
 	fi
 
-	# Directories
-	if [[ -d "$entry" ]]; then
-		cp -af "$backup_entry/." "$entry"
-		continue
-	fi
+	cp -af "$src" "$entry"
+	continue
+	# fi
 done

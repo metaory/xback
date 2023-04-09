@@ -13,25 +13,15 @@ mkdir ./data &>/dev/null
 cat <config | while read -r entry; do
 	fll "$(tput cols)" -
 
-	# Comments
+	# Comment lines
 	if [[ "${entry:0:1}" == "#" ]]; then continue; fi
-	# Empty
+
+	# Empty lines
 	if [[ -z $entry ]]; then continue; fi
 
 	dest=$(serialize "$entry")
+
 	echo ">: $dest"
 
-	# Files
-	if [[ -f "$entry" ]]; then
-		echo "f: $entry"
-		cp "$entry" "$dest"
-		continue
-	fi
-
-	# Directories
-	if [[ -d "$entry" ]]; then
-		echo "d: $entry"
-		cp -r "$entry" "$dest/"
-		continue
-	fi
+	cp -rv "$entry" "$dest"
 done
