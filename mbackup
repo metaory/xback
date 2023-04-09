@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+echo init
+
+echo "$PWD"
+fll() { printf "%0.s${2:- }" $(seq 1 "${1:-1}"); }
+
+cat <config | while read -r entry; do
+	fll "$(tput cols)" \-
+
+	# Comments
+	if [[ "${entry:0:1}" == "#" ]]; then
+		echo "###${entry}"
+		continue
+	fi
+
+	if [[ -z $entry ]]; then continue; fi
+
+	dest="./data/${entry//\//__}"
+	echo ">: $dest"
+
+	# Files
+	if [[ -f "$entry" ]]; then
+		echo "f: $entry"
+		cp "$entry" "$dest"
+		continue
+	fi
+
+	# Directories
+	if [[ -d "$entry" ]]; then
+		echo "d: $entry"
+		cp -r "$entry" "$dest/"
+		continue
+	fi
+done
+
+# mkdir -p "./data${entry%/*}"
