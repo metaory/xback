@@ -1,6 +1,12 @@
 # simple-backup
 A very very simple (under 30 LoC) **backup** and **restore** tool written in pure Bash
 
+# How it works
+- parses `./config` file in current working directory
+- `mbackup` copy and unwrap backup path if exists
+- `mrstore`
+
+
 # Usage
 - `cp sample.config config` and update the config
 - `./mbackup` 
