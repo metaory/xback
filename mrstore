@@ -13,8 +13,7 @@ cat <config | while read -r entry; do
 
 	backup_entry="$(serialize "$entry")"
 
-	if ! [[ -e $backup_entry ]]; then
-		echo -e "$backup_entry doesnt exists. \n skipping ..."
+	if [[ -e "$backup_entry" ]]; then
 		continue
 	fi
 
