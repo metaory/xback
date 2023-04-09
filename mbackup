@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 
-cat <<EOF
-  ################
-  ##  M.BACKUP  ##
-  ################
-EOF
-
 source "./util.sh"
+
+header BACKUP
 
 mkdir ./data &>/dev/null
 

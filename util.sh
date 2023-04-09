@@ -6,6 +6,14 @@ serialize() {
 	echo "./data/${1//\//__}"
 }
 
+header() {
+	cat <<EOF
+  ##############
+  ##  $1  ##
+  ##############
+EOF
+}
+
 # deserialize() {
 # 	out="${1/#.\/data\//}"
 # 	echo "${dest//__/\/}"
