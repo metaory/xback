@@ -6,4 +6,24 @@ cat <<EOF
   #################
 EOF
 
-echo "TODO:"
+for entry in ./data/*; do
+	echo -e "\n"
+	dest="${entry/#.\/data\//}"
+	dest="${dest//__/\/}"
+
+	echo ">: $dest"
+
+	# Files
+	if [[ -f "$entry" ]]; then
+		echo "f: $entry"
+		# cp "$entry" "$dest" --interactive -v
+		continue
+	fi
+
+	# Directories
+	if [[ -d "$entry" ]]; then
+		echo "d: $entry"
+		# cp -r "$entry" "$dest" --interactive -v
+		continue
+	fi
+done
