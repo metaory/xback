@@ -1,5 +1,5 @@
 # simple-backup
-A very simple **backup** and **restore** tool written in pure Bash
+A very very simple (under 30 LoC) **backup** and **restore** tool written in pure Bash
 
 # Usage
 - `cp sample.config config` and update the config
