@@ -5,13 +5,11 @@ source "./util.sh"
 header RSTORE
 
 cat <config | while read -r entry; do
-	backup_entry="$(serialize "$entry")"
+	src="$(serialize "$entry")"
 
-	catch=$(catches "$backup_entry")
+	catch=$(catches "$src")
 
 	if ((catch)); then continue; fi
-
-	src="$backup_entry"
 
 	if [[ -d "$entry" ]]; then
 		src="${src}/."

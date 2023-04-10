@@ -3,13 +3,7 @@ if ! [[ -e "./config" ]]; then
 	exit 1
 fi
 
-fll() {
-	printf "%0.s${2:- }" $(seq 1 "${1:-1}")
-}
-
-serialize() {
-	echo "./data/${1//\//__}"
-}
+mkdir ./data &>/dev/null
 
 header() {
 	cat <<EOF
@@ -17,6 +11,14 @@ header() {
   ##  $1  ##
   ##############
 EOF
+}
+
+fll() {
+	printf "%0.s${2:- }" $(seq 1 "${1:-1}")
+}
+
+serialize() {
+	echo "./data/${1//\//__}"
 }
 
 catches() {

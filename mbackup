@@ -4,10 +4,9 @@ source "./util.sh"
 
 header BACKUP
 
-mkdir ./data &>/dev/null
-
 cat <config | while read -r entry; do
 	catch=$(catches "$entry")
+
 	if ((catch)); then continue; fi
 
 	dest=$(serialize "$entry")
