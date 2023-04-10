@@ -1,25 +1,20 @@
 #!/usr/bin/env bash
 
-header BACKUP
-
 source "./util.sh"
+
+header BACKUP
 
 mkdir ./data &>/dev/null
 
 cat <config | while read -r entry; do
-	fll "$(tput cols)" -
-
-	if [[ -n $(catches "$entry") ]]; then
-		continue
-	fi
+	catch=$(catches "$entry")
+	if ((catch)); then continue; fi
 
 	dest=$(serialize "$entry")
 
 	if [[ -d "$entry" ]]; then
 		entry="${entry}/."
 	fi
-
-	echo -e "src: ${entry}\ndst: ${dest}"
 
 	cp -afv "$entry" "$dest"
 done

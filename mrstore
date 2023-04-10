@@ -1,23 +1,15 @@
 #!/usr/bin/env bash
 
-header RSTORE
-
 source "./util.sh"
 
+header RSTORE
+
 cat <config | while read -r entry; do
-	fll "$(tput cols)" -
-
-	if [[ -n $(catches "$entry") ]]; then
-		continue
-	fi
-
 	backup_entry="$(serialize "$entry")"
 
-	if [[ -e "$backup_entry" ]]; then
-		continue
-	fi
+	catch=$(catches "$backup_entry")
 
-	echo -e "d: ${backup_entry}\n${entry}"
+	if ((catch)); then continue; fi
 
 	src="$backup_entry"
 

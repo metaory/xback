@@ -20,14 +20,28 @@ EOF
 }
 
 catches() {
-	# Exists
-	if ! [[ -e ${2:-$1} ]]; then return 3; fi
-	# Empty lines
-	if [[ -z $1 ]]; then return 2; fi
 	# Comment lines
-	if [[ "${1:0:1}" == "#" ]]; then return 1; fi
+	if [[ "${1:0:1}" == "#" ]]; then
+		echo 1
+		return
+	fi
+	# Empty lines
+	if [[ -z $1 ]]; then
+		echo 2
+		return
+	fi
+	# Exists
+	if ! [[ -e $1 ]]; then
+		echo 3
+		return
+	fi
+	# Base Only
+	if [[ $1 == "./data/" ]]; then
+		echo 4
+		return
+	fi
 	# Default
-	return 0
+	echo 0
 }
 
 # deserialize() {
