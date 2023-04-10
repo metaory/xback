@@ -29,3 +29,9 @@ A very very simple (under 30 LoC) **backup** and **restore** tool written in pur
 # Alacritty
 /home/meta/.config/alacritty
 ```
+# How does it works
+- It parses the config for paths
+- Copy the path _directory/file_ to `./data` with all slashes replaced with `__`
+
+for example path of
+`/home/meta/tmp/js` will go to `./m.backup/data/__home__meta__tmp__js`
