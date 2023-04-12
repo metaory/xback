@@ -14,7 +14,7 @@ EOF
 }
 
 serialize() {
-	echo "./data/${1//\//__}"
+	echo "./data/${1//\//_}"
 }
 
 catches() {
