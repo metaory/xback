@@ -13,10 +13,6 @@ header() {
 EOF
 }
 
-fll() {
-	printf "%0.s${2:- }" $(seq 1 "${1:-1}")
-}
-
 serialize() {
 	echo "./data/${1//\//__}"
 }
@@ -45,8 +41,3 @@ catches() {
 	# Default
 	echo 0
 }
-
-# deserialize() {
-# 	out="${1/#.\/data\//}"
-# 	echo "${dest//__/\/}"
-# }
