@@ -2,13 +2,16 @@
 A very very simple (under 30 LoC) **backup** and **restore** tool written in pure Bash
 
 # Usage
-- `cp sample.config config` and update the config
-- `./mbackup` 
-  - looks for a `./config` file in current working directory,
+- link executables to your bin path
+- copy and update the config `cp sample.config config`
+- place the config in a clean git directory 
+
+- run `mbackup`
+  - looks for a `config` file in current working directory,
   - parses the config
   - copy each file/dir of config path to `./data`
 
-- `./mrestore`
+- run `./mrestore`
   - looks for a `./config` file in current working directory,
   - parses the config
   - restore each entry if exists in `./data`
@@ -34,4 +37,4 @@ A very very simple (under 30 LoC) **backup** and **restore** tool written in pur
 - Copy the path _directory/file_ to `./data` with all slashes replaced with `__`
 
 for example path of
-`/home/meta/tmp/js` will go to `./m.backup/data/__home__meta__tmp__js`
+`/home/meta/tmp/js` will go to `./m.dotfiles/data/__home__meta__tmp__js`
