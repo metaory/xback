@@ -1,4 +1,4 @@
-if ! [[ -e "./config" ]]; then
+if ! [[ -e "./mbackup.conf" ]]; then
 	echo "config not found!"
 	exit 1
 fi

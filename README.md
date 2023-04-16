@@ -3,7 +3,7 @@ A very very simple (under 30 LoC) **backup** and **restore** tool written in pur
 
 # Usage
 - link executables to your bin path
-- update the config `cp sample.backup.conf backup.conf`
+- update the config `cp sample.mbackup.conf mbackup.conf`
 - place the config in a clean git directory 
 
 - run `mbackup`
