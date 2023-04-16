@@ -3,7 +3,7 @@ A very very simple (under 30 LoC) **backup** and **restore** tool written in pur
 
 # Usage
 - link executables to your bin path
-- copy and update the config `cp sample.config config`
+- update the config `cp sample.backup.conf backup.conf`
 - place the config in a clean git directory 
 
 - run `mbackup`
@@ -36,5 +36,5 @@ A very very simple (under 30 LoC) **backup** and **restore** tool written in pur
 - It parses the config for paths
 - Copy the path _directory/file_ to `./data` with all slashes replaced with `_`
 
-for example path of
+For example path of
 `/home/meta/tmp/js` will go to `./m.dotfiles/data/_home_meta_tmp_js`

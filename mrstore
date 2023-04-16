@@ -7,7 +7,7 @@ realp=$(dirname "$(realpath "$0")")
 
 header RSTORE
 
-cat <config | while read -r entry; do
+cat <backup.conf | while read -r entry; do
 	src="$(serialize "$entry")"
 
 	catch=$(catches "$src")
